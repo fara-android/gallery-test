@@ -10,6 +10,17 @@ class ProfileBottomScreen extends StatefulWidget {
 class _ProfileBottomScreenState extends State<ProfileBottomScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        // leading: Icon(),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            
+            icon: Icon(Icons.settings),
+          )
+        ],
+      ),
+    );
   }
 }

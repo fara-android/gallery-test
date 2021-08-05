@@ -18,7 +18,6 @@ class SignUpScreen extends StatelessWidget {
       appBar: customAppBar(context),
       body: SafeArea(
           child: SingleChildScrollView(
-            
         child: Container(
           width: width,
           padding: EdgeInsets.all(16),
@@ -88,7 +87,9 @@ class SignUpScreen extends StatelessWidget {
                 width: width / 3,
                 context: context,
               ),
-              SizedBox(height: 42,)
+              SizedBox(
+                height: 42,
+              )
             ],
           ),
         ),

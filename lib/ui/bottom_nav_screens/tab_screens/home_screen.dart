@@ -29,7 +29,7 @@ class _HomeBottomScreenState extends State<HomeBottomScreen>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        //Set search field  
+          //Set search field
           centerTitle: true,
           bottom: TabBar(
               controller: _tabController,

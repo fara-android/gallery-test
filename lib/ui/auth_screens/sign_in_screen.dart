@@ -42,6 +42,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 CustomRedUnderline(),
                 SizedBox(height: height / 12),
                 CustomTextField(
+                 
                   isObscure: false,
                   hintText: "Email",
                   suffixIcon: Icon(Icons.email),
@@ -50,6 +51,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: height / 24,
                 ),
                 CustomTextField(
+                  maxLines: 1,
                   isObscure: _isObscureText,
                   hintText: "Password",
                   suffixIcon: IconButton(

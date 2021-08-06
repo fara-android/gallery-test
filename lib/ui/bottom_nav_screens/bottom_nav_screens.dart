@@ -15,7 +15,7 @@ class _BottomNavScreensState extends State<BottomNavScreens> {
   List<Widget> _widgetOptions = <Widget>[
     HomeBottomScreen(),
     AddPhotoBottomScreen(),
-    ProfileBottomScreen()
+    ProfileScreen()
   ];
 
   void onItemTap(int index) {

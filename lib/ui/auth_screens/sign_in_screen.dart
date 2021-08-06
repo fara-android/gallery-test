@@ -6,6 +6,7 @@ import 'package:gallery_test/components/custom_cancel_appBar.dart';
 import 'package:gallery_test/components/custom_red_underline.dart';
 import 'package:gallery_test/components/custom_text_field.dart';
 import 'package:gallery_test/ui/auth_screens/sign_up_screen.dart';
+import 'package:gallery_test/ui/bottom_nav_screens/bottom_nav_screens.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -42,7 +43,6 @@ class _SignInScreenState extends State<SignInScreen> {
                 CustomRedUnderline(),
                 SizedBox(height: height / 12),
                 CustomTextField(
-                 
                   isObscure: false,
                   hintText: "Email",
                   suffixIcon: Icon(Icons.email),
@@ -82,6 +82,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 CustomButton(
                   title: "Sign In",
                   buttonColor: black,
+                  path: BottomNavScreens(),
                   textColor: white,
                   width: width / 3,
                   context: context,

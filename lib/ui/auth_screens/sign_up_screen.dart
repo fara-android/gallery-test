@@ -74,6 +74,8 @@ class SignUpScreen extends StatelessWidget {
               CustomButton(
                 title: "Sign In",
                 buttonColor: black,
+                path: BottomNavScreens(),
+                
                 textColor: white,
                 width: width / 3,
                 context: context,

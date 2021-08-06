@@ -21,7 +21,8 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => path!));
+        
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => path!));
       },
       child: Container(
         decoration: BoxDecoration(

@@ -1,9 +1,14 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:gallery_test/components/colors.dart';
 import 'package:gallery_test/components/custom_chips.dart';
 
 import 'package:gallery_test/components/custom_text_field.dart';
+import 'package:gallery_test/models/image_model.dart';
 import 'package:gallery_test/ui/bottom_nav_screens/bottom_nav_screens.dart';
+import 'package:gallery_test/ui/bottom_nav_screens/tab_screens/new_photo_tab_screen.dart';
 
 import 'dart:io';
 
@@ -19,36 +24,79 @@ class AddPhotoBottomScreen extends StatefulWidget {
 class _AddPhotoBottomScreenState extends State<AddPhotoBottomScreen> {
   TextEditingController? nameController;
   TextEditingController? descriptioncontroller;
-  
 
   File? _image;
   final imagePicker = ImagePicker();
   Future getImage() async {
     final image = await imagePicker.pickImage(source: ImageSource.camera);
     setState(() {
-      _image = File(image!.path);
+      try {
+        setState(() {
+          _image = File(image!.path);
+        });
+      } catch (e) {
+        setState(() {
+          Text("data");
+        });
+      }
     });
   }
 
   Future getImageFromGallery() async {
     final imagefromGallery =
         await imagePicker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      _image = File(imagefromGallery!.path);
-    });
+    try {
+      setState(() {
+        _image = File(imagefromGallery!.path);
+      });
+    } catch (e) {
+      setState(() {
+        Text("data");
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         actions: [
           TextButton(
-            child: Text(
-              "Add",
-              style: TextStyle(color: Color(0xffCF497E)),
+            child: InkWell(
+              onTap: () {
+                if (_image != null) {
+                  addItemToList(ImageList.imageModelList,
+                      convertFileToImage(_image!), "name", "username");
+                  setState(() {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      backgroundColor: Colors.green,
+                      content: Container(
+                        height: height / 30,
+                        alignment: Alignment.bottomCenter,
+                        child: Text("Photo Added succesfull"),
+                      ),
+                    ));
+                  });
+                } else {
+                  setState(() {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      backgroundColor: Colors.red,
+                      content: Container(
+                        height: height / 30,
+                        alignment: Alignment.bottomCenter,
+                        child: Text("Fill all fields!"),
+                      ),
+                    ));
+                  });
+                }
+              },
+              child: Text(
+                "Add",
+                style: TextStyle(color: Color(0xffCF497E)),
+              ),
             ),
             onPressed: () {},
           )
@@ -145,5 +193,18 @@ class _AddPhotoBottomScreenState extends State<AddPhotoBottomScreen> {
         ),
       ),
     );
+  }
+
+  void addItemToList(
+      List<ImageModel> list, Image image, String name, String description) {
+    ImageList.imageModelList.add(new ImageModel(image, name, description));
+  }
+
+  Image convertFileToImage(File picture) {
+    List<int> imageBase64 = picture.readAsBytesSync();
+    String imageAsString = base64Encode(imageBase64);
+    Uint8List uint8list = base64Decode(imageAsString);
+    Image image = Image.memory(uint8list);
+    return image;
   }
 }

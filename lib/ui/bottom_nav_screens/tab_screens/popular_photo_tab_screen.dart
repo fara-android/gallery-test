@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gallery_test/components/custom_grid_view_for_new.dart';
-import 'package:gallery_test/components/custom_grid_view_for_popular.dart';
 
 class PopularPhotoTabScreen extends StatefulWidget {
   PopularPhotoTabScreen({Key? key}) : super(key: key);
@@ -12,6 +11,6 @@ class PopularPhotoTabScreen extends StatefulWidget {
 class _PopularPhotoTabScreenState extends State<PopularPhotoTabScreen> {
   @override
   Widget build(BuildContext context) {
-    return CustomGridViewForPopular();
+    return CustomGridViewForNew();
   }
 }
